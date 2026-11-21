@@ -18,7 +18,10 @@ class Model(torch.nn.Module):
             kwargs.update({'out_indices': out_indices})
 
         ## RGB backbone
-        self.rgb_backbone = timm.create_model(model_name=rgb_backbone_name, pretrained=False,checkpoint_path="/home/lc/.cache/huggingface/hub/models--timm--vit_base_patch8_224.dino/pytorch_model.bin",**kwargs)
+        if rgb_backbone_name is 'vit_base_patch8_224_dino:
+            self.rgb_backbone = timm.create_model(model_name=rgb_backbone_name, pretrained=False,checkpoint_path="/home/lc/.cache/huggingface/hub/models--timm--vit_base_patch8_224.dino/pytorch_model.bin",**kwargs)
+        else if rgb_backbone_name is 'in21k':
+            self.rgb_backbone = timm.create_model('vit_base_patch8_224.augreg_in21k', pretrained=True)
         
         ## XYZ backbone
         if xyz_backbone_name=='Point_MAE':
