@@ -19,9 +19,9 @@ class Model(torch.nn.Module):
 
         ## RGB backbone
         if rgb_backbone_name is 'vit_base_patch8_224_dino':
-            self.rgb_backbone = timm.create_model(model_name=rgb_backbone_name, pretrained=True,**kwargs)
+            self.rgb_backbone = timm.create_model(model_name='vit_base_patch8_224.dino', pretrained=True,**kwargs)
         elif rgb_backbone_name is 'vit_base_patch8_224_in21k':
-            self.rgb_backbone = timm.create_model('vit_base_patch8_224.augreg_in21k', pretrained=True,**kwargs)
+            self.rgb_backbone = timm.create_model(model_name='vit_base_patch8_224.augreg_in21k', pretrained=True,**kwargs)
         
         ## XYZ backbone
         if xyz_backbone_name=='Point_MAE':
